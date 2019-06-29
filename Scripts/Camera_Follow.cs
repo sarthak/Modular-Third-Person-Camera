@@ -7,21 +7,20 @@ namespace CameraModules {
 	{
 		public CameraModules.Camera_Main main;
 		public float responsiveness;
-		public Vector3 up = Vector3.up;
 
-		private Vector3 root_distance;
+		private Vector3 up = Vector3.up;
 
 		void Start() {
-			root_distance = Vector3.ProjectOnPlane(main.player.position - transform.position, up);
+			up = transform.up;
 		}
 
 		void Update() {
 			Vector3 dist = Vector3.ProjectOnPlane(main.player.position - transform.position, up);
 
-			if (dist == root_distance) {
+			if (dist == Vector3.zero) {
 				return;
 			} else {
-				transform.Translate((dist - root_distance) * responsiveness * Time.deltaTime, Space.World);
+				transform.Translate((dist) * responsiveness * Time.deltaTime, Space.World);
 			}
 		}
 	}

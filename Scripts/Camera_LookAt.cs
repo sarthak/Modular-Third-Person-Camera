@@ -8,11 +8,17 @@ namespace CameraModules{
 		public CameraModules.Camera_Main main;
 		public Vector3 offset;
 		public float easiness;
+		public bool fast;
 
 		void Update() {
-			Quaternion lookrot = Quaternion.LookRotation(main.relative_to_absolute * offset + main.player.position
-				       	- transform.position, Vector3.up);
-			transform.rotation = Quaternion.Slerp(transform.rotation, lookrot, easiness*Time.deltaTime);
+			if (fast) {
+				main.container.LookAt(transform.rotation * offset + main.player.position);
+				return;
+			}
+
+			Quaternion lookrot = Quaternion.LookRotation(transform.rotation * offset + main.player.position
+				       	- main.container.position, transform.up);
+			main.container.rotation = Quaternion.Slerp(main.container.rotation, lookrot, easiness*Time.deltaTime);
 		}
 	}
 }

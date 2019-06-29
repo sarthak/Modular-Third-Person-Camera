@@ -15,6 +15,8 @@ public class SimpleCharacterControl : MonoBehaviour {
     [SerializeField] private Animator m_animator;
     [SerializeField] private Rigidbody m_rigidBody;
 
+    public Transform camera_root;
+
     [SerializeField] private ControlMode m_controlMode = ControlMode.Direct;
 
     private float m_currentV = 0;
@@ -127,7 +129,9 @@ public class SimpleCharacterControl : MonoBehaviour {
         m_currentH = Mathf.Lerp(m_currentH, h, Time.deltaTime * m_interpolation);
 
         transform.position += transform.forward * m_currentV * m_moveSpeed * Time.deltaTime;
-        transform.Rotate(0, m_currentH * m_turnSpeed * Time.deltaTime, 0);
+        /* transform.Rotate(0, m_currentH * m_turnSpeed * Time.deltaTime, 0); */
+	if (Mathf.Abs(m_currentV) > 0.1f)
+		transform.rotation = camera_root.rotation;
 
         m_animator.SetFloat("MoveSpeed", m_currentV);
 
