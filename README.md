@@ -8,6 +8,7 @@ This project is an experiment, an attempt to create a third person camera script
 Although, it is true that a dedicated camera script hand written for a specific game is always going to be more efficient than any other 'general' implementations, this project aims to be a handy prototype so that you may leave the camera scripting to a later time and focus on core game mechanics. Once you are done with the mechanics, you can come back to replace this with a dedicated camera system for extra performance.
 
 Example - 
+
 ![GIF of Top-down style games](https://i.imgur.com/tmStATN.gif)]
 ![GIF of third person style games](https://i.imgur.com/jAW9vVw.gif)]
 ![GIF of 2D style games](https://i.imgur.com/t1M3CpQ.gif)]
@@ -18,6 +19,8 @@ Clone the scripts folder. If you want a demo first, also clone the Demo folder.
 The camera is actually a collection of 3 gameobjects :- Main Camera, Container (Parent of Main Camera) and Root (Parent of Container).
 
 root > container > camera
+
+This chain is mainly to ease the process of transformation by providing 3 transforms instead of one. Basically, all the movment actions are carried by root. All the orbiting and lookat actions are carried by container. Camera transform should only be modified for special effects like camera setback on explosion etc.
 
 Set the initial position of root to the position of player. Adjust the container to any position you feel is good. And don't really bother with camera. Just make sure the following -
 
