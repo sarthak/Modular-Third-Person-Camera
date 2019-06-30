@@ -131,7 +131,7 @@ public class SimpleCharacterControl : MonoBehaviour {
         transform.position += transform.forward * m_currentV * m_moveSpeed * Time.deltaTime;
         /* transform.Rotate(0, m_currentH * m_turnSpeed * Time.deltaTime, 0); */
 	if (Mathf.Abs(m_currentV) > 0.1f)
-		transform.rotation = camera_root.rotation;
+		transform.rotation = Quaternion.Slerp(transform.rotation, camera_root.rotation, m_turnSpeed * Time.deltaTime);
 
         m_animator.SetFloat("MoveSpeed", m_currentV);
 

@@ -5,8 +5,15 @@ using UnityEngine;
 namespace CameraModules {
 	public class Camera_Turn : MonoBehaviour
 	{
+		/* Module which makes camera follow the player's rotation to,
+		 * that is, turn with the player */
+
 		public CameraModules.Camera_Main main;
 		public float responsiveness;
+
+		void Start() {
+			print ("root.rotation");
+		}
 
 		void Update() {
 			if (transform.rotation != main.player.rotation) {

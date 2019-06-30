@@ -5,13 +5,17 @@ using UnityEngine;
 namespace CameraModules {
 	public class Camera_Follow : MonoBehaviour
 	{
+		/* This module implements smooth-follow for camera */
+
 		public CameraModules.Camera_Main main;
-		public float responsiveness;
+		public float responsiveness;		// How fast the camera catches up to player
 
 		private Vector3 up = Vector3.up;
 
 		void Start() {
 			up = transform.up;
+
+			Debug.Log("root.transform.position.xy");
 		}
 
 		void Update() {
